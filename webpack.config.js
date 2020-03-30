@@ -1,11 +1,11 @@
 const path = require('path')
 
 module.exports = {
-  entry: './src/url-browser.js',
+  entry: './src/url-handler.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'url-browser.js',
-    library: 'URLBrowser',
+    filename: 'url-handler.js',
+    library: 'URLHandler',
     libraryTarget: 'umd',
     umdNamedDefine: true
   },

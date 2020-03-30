@@ -1,15 +1,15 @@
 {
-  "name": "url-browser",
-  "version": "1.0.0",
+  "name": "@godxiaoji/url-handler",
+  "version": "1.0.2",
   "description": "URL处理插件",
-  "main": "./dist/url-browser.js",
+  "main": "./dist/url-handler.js",
   "scripts": {
     "test": "mocha",
     "build": "webpack"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/godxiaoji/url-browser.git"
+    "url": "git+https://github.com/godxiaoji/url-handler.git"
   },
   "keywords": [
     "URL"
@@ -17,9 +17,9 @@
   "author": "Travis",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/godxiaoji/url-browser/issues"
+    "url": "https://github.com/godxiaoji/url-handler/issues"
   },
-  "homepage": "https://github.com/godxiaoji/url-browser#readme",
+  "homepage": "https://github.com/godxiaoji/url-handler#readme",
   "devDependencies": {
     "assert": "^2.0.0",
     "mocha": "^7.1.1",

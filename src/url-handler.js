@@ -15,7 +15,7 @@
     module.exports = factory();
   } else {
     // Browser globals (root is window)
-    root.URLBrowser = factory();
+    root.URLHandler = factory();
   }
 }(typeof self !== 'undefined' ? self : this, (function () {
   'use strict';
