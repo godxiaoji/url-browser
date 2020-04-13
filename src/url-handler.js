@@ -1,24 +1,18 @@
-/**
- * @namespace URL
- * @version 1.0.0
- * @author Travis [godxiaoji@gmail.com]
- */
-
-(function (root, factory) {
+(function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define([], factory);
+    define([], factory)
   } else if (typeof module === 'object' && module.exports) {
     // Node. Does not work with strict CommonJS, but
     // only CommonJS-like environments that support module.exports,
     // like Node.
-    module.exports = factory();
+    module.exports = factory()
   } else {
     // Browser globals (root is window)
-    root.URLHandler = factory();
+    root.URLHandler = factory()
   }
-}(typeof self !== 'undefined' ? self : this, (function () {
-  'use strict';
+})(typeof self !== 'undefined' ? self : this, function() {
+  'use strict'
 
   class URL {
     constructor(url, base = '') {
@@ -31,7 +25,7 @@
       return this
     }
 
-    addQuery (name, value) {
+    addQuery(name, value) {
       let querys = name
 
       if (typeof name === 'string') {
@@ -51,7 +45,7 @@
       return queryUpdate(this)
     }
 
-    removeQuery (name) {
+    removeQuery(name) {
       let querys = []
 
       if (typeof name === 'string') {
@@ -67,7 +61,7 @@
       return queryUpdate(this)
     }
 
-    setHash (hash) {
+    setHash(hash) {
       if (hash == null) {
         hash = ''
       } else if (hash.toString().indexOf('#') !== 0) {
@@ -80,12 +74,12 @@
       return this
     }
 
-    toString () {
+    toString() {
       return this.href
     }
   }
 
-  function queryUpdate (self) {
+  function queryUpdate(self) {
     const queries = []
 
     for (let i in self.query) {
@@ -104,7 +98,7 @@
    * URL解析
    * @param {String} url
    */
-  const parse = function (url) {
+  const parse = function(url) {
     if (typeof url !== 'string') {
       throw new TypeError('"url" must be a string type.')
     }
@@ -170,4 +164,4 @@
   }
 
   return URL
-})));
+})

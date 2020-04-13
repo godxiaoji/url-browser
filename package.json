@@ -1,10 +1,11 @@
 {
   "name": "@godxiaoji/url-handler",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "URL处理插件",
   "main": "./dist/url-handler.js",
   "scripts": {
-    "test": "mocha",
+    "test": "eslint ./src/*.js && mocha",
+    "lint": "eslint --fix ./src/*.js",
     "build": "webpack"
   },
   "repository": {
