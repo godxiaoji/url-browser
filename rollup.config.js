@@ -1,7 +1,5 @@
-import { DEFAULT_EXTENSIONS } from '@babel/core'
 import typescript from 'rollup-plugin-typescript2'
 import { terser } from 'rollup-plugin-terser'
-import { babel } from '@rollup/plugin-babel'
 
 export default [
   {
@@ -12,14 +10,7 @@ export default [
       file: 'dist/url-handler.js'
       // exports: 'named'
     },
-    plugins: [
-      typescript({}),
-      babel({
-        extensions: [...DEFAULT_EXTENSIONS, '.ts'],
-        babelHelpers: 'bundled'
-      }),
-      terser({ compress: { drop_console: false } })
-    ]
+    plugins: [typescript({}), terser({ compress: { drop_console: false } })]
   },
   {
     input: './src/index.ts',

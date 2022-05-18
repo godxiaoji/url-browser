@@ -7,7 +7,7 @@ URL 处理插件。
 ### CDN
 
 ```
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@godxiaoji/url-handler@1.0.0/dist/url-handler.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@godxiaoji/url-handler@1.1.1/dist/url-handler.js"></script>
 ```
 
 ### NPM

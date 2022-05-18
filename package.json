@@ -1,6 +1,6 @@
 {
   "name": "@godxiaoji/url-handler",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "URL处理插件",
   "main": "./dist/url-handler.cjs",
   "module": "./dist/url-handler.mjs",
@@ -28,19 +28,20 @@
     "dist"
   ],
   "devDependencies": {
-    "@babel/core": "^7.17.12",
-    "@rollup/plugin-babel": "^5.3.1",
     "@typescript-eslint/eslint-plugin": "^5.25.0",
     "@typescript-eslint/parser": "^5.25.0",
     "assert": "^2.0.0",
+    "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.15.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-prettier": "^4.0.0",
     "mocha": "^10.0.0",
-    "prettier": "^2.6.2",
     "rollup": "^2.73.0",
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-typescript2": "^0.31.2",
     "typescript": "^4.6.4"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
