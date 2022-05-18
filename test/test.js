@@ -1,5 +1,5 @@
 const assert = require('assert')
-const URLHandler = require('../src/url-handler')
+const URLHandler = require('../dist/url-handler')
 
 describe('#myUrl = new URLHandler("https://test.com/path?a=1&b=2#hash")', () => {
   const url = 'https://test.com/path?a=1&b=2#hash'
