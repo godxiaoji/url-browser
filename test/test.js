@@ -1,30 +1,115 @@
 const assert = require('assert')
 const URLHandler = require('../dist/url-handler')
+const URL = require('url')
 
-describe('#myUrl = new URLHandler("https://test.com/path?a=1&b=2#hash")', () => {
+describe('#myUrl = new URLHandler("https://test.com/path/to?a=1&b=2#hash")', () => {
   const url = 'https://test.com/path?a=1&b=2#hash'
 
   describe('returns', () => {
     const myUrl = new URLHandler(url)
+    const nodeUrl = URL.parse(url, true)
 
-    it('myUrl.host should be "test.com"', () => {
-      assert.strictEqual(myUrl.host, 'test.com')
+    it(`myUrl.host should be "${nodeUrl.host}"`, () => {
+      assert.strictEqual(myUrl.host, nodeUrl.host)
     })
 
-    it('myUrl.protocol should be "https:"', () => {
-      assert.strictEqual(myUrl.protocol, 'https:')
+    it(`myUrl.protocol should be "${nodeUrl.protocol}"`, () => {
+      assert.strictEqual(myUrl.protocol, nodeUrl.protocol)
     })
 
-    it('myUrl.pathname should be "/path"', () => {
-      assert.strictEqual(myUrl.pathname, '/path')
+    it(`myUrl.port should be "${nodeUrl.port}"`, () => {
+      assert.strictEqual(myUrl.port, nodeUrl.port)
     })
 
-    it('myUrl.queryString should be "a=1&b=2"', () => {
+    it(`myUrl.pathname should be "${nodeUrl.pathname}"`, () => {
+      assert.strictEqual(myUrl.pathname, nodeUrl.pathname)
+    })
+
+    it(`myUrl.path should be "${nodeUrl.path}"`, () => {
+      assert.strictEqual(myUrl.path, nodeUrl.path)
+    })
+
+    it(`myUrl.search should be "${nodeUrl.search}"`, () => {
+      assert.strictEqual(myUrl.search, nodeUrl.search)
+    })
+
+    it(`myUrl.queryString should be "a=1&b=2"'`, () => {
       assert.strictEqual(myUrl.queryString, 'a=1&b=2')
     })
 
-    it('myUrl.hash should be "#hash"', () => {
-      assert.strictEqual(myUrl.hash, '#hash')
+    it(`myUrl.hash should be "${nodeUrl.hash}"`, () => {
+      assert.strictEqual(myUrl.hash, nodeUrl.hash)
+    })
+  })
+
+  describe('returns B', () => {
+    const url =
+      'https://www.test.com:8080'
+    const myUrl = new URLHandler(url)
+    const nodeUrl = URL.parse(url, true)
+
+    it(`myUrl.host should be "${nodeUrl.host}"`, () => {
+      assert.strictEqual(myUrl.host, nodeUrl.host)
+    })
+
+    it(`myUrl.port should be "${nodeUrl.port}"`, () => {
+      assert.strictEqual(myUrl.port, nodeUrl.port)
+    })
+
+    it(`myUrl.protocol should be "${nodeUrl.protocol}"`, () => {
+      assert.strictEqual(myUrl.protocol, nodeUrl.protocol)
+    })
+
+    it(`myUrl.pathname should be "${nodeUrl.pathname}"`, () => {
+      assert.strictEqual(myUrl.pathname, nodeUrl.pathname)
+    })
+
+    it(`myUrl.path should be "${nodeUrl.path}"`, () => {
+      assert.strictEqual(myUrl.path, nodeUrl.path)
+    })
+
+    it(`myUrl.search should be "${nodeUrl.search}"`, () => {
+      assert.strictEqual(myUrl.search, nodeUrl.search)
+    })
+
+    it(`myUrl.hash should be "${nodeUrl.hash}"`, () => {
+      assert.strictEqual(myUrl.hash, nodeUrl.hash)
+    })
+  })
+
+  describe('returns C', () => {
+    const url =
+      'https://auth.test.com/?return_to=/oauth/authorize?client_id%3Dxxx%26redirect_uri%3Dhttp://www.test.com%26response_type%3Dcode%26state%3DBj74mY%26time%3D1701689505019%26inner%3Dtrue#aaa#'
+    const myUrl = new URLHandler(url)
+    const nodeUrl = URL.parse(url, true)
+
+
+    it(`myUrl.host should be "${nodeUrl.host}"`, () => {
+      assert.strictEqual(myUrl.host, nodeUrl.host)
+    })
+
+    it(`myUrl.port should be "${nodeUrl.port}"`, () => {
+      assert.strictEqual(myUrl.port, nodeUrl.port)
+    })
+
+    it(`myUrl.protocol should be "${nodeUrl.protocol}"`, () => {
+      assert.strictEqual(myUrl.protocol, nodeUrl.protocol)
+    })
+
+    it(`myUrl.pathname should be "${nodeUrl.pathname}"`, () => {
+      assert.strictEqual(myUrl.pathname, nodeUrl.pathname)
+    })
+
+    it(`myUrl.path should be "${nodeUrl.path}"`, () => {
+      assert.strictEqual(myUrl.path, nodeUrl.path)
+    })
+
+    it(`myUrl.search should be "${nodeUrl.search}"`, () => {
+      assert.strictEqual(myUrl.search, nodeUrl.search)
+    })
+
+    it(`myUrl.hash should be "${nodeUrl.hash}"`, () => {
+      assert.strictEqual(myUrl.hash, nodeUrl.hash)
     })
   })
 
@@ -47,8 +132,8 @@ describe('#myUrl = new URLHandler("https://test.com/path?a=1&b=2#hash")', () => 
       assert.strictEqual(
         new URLHandler(url).addQuery('e', { a: 1, b: 2 }).toString(),
         'https://test.com/path?a=1&b=2&e=' +
-        encodeURIComponent(JSON.stringify({ a: 1, b: 2 })) +
-        '#hash'
+          encodeURIComponent(JSON.stringify({ a: 1, b: 2 })) +
+          '#hash'
       )
     })
   })

@@ -1,17 +1,17 @@
 import parse from './parse'
 
-type QueryValue = any
+type QueryValue = unknown
 
 type QueryBundle = Record<string, QueryValue>
 
-class URLHanlder {
-  hash: string
-  search: string
+class URLHandler {
+  hash: string | null
+  search: string | null
   host: string
   hostname: string
   pathname: string
   protocol: string
-  port: string
+  port: string | null
   href: string
   origin: string
   query: Record<string, string>
@@ -39,7 +39,7 @@ class URLHanlder {
    * @param bundle 参数对象
    * @returns 自身
    */
-  public addQuery(bundle: QueryBundle): URLHanlder
+  public addQuery(bundle: QueryBundle): URLHandler
 
   /**
    * 增加query参数
@@ -47,19 +47,19 @@ class URLHanlder {
    * @param value 参数值
    * @returns 自身
    */
-  public addQuery(name: string, value: QueryValue): URLHanlder
+  public addQuery(name: string, value: QueryValue): URLHandler
 
   public addQuery(name: string | QueryBundle, value?: QueryValue) {
-    let querys = name as QueryBundle
+    let queries = name as QueryBundle
 
     if (typeof name === 'string') {
-      querys = {
+      queries = {
         [name]: value
       }
     }
 
-    for (const k in querys) {
-      const v = querys[k]
+    for (const k in queries) {
+      const v = queries[k]
       if (v != null) {
         this.query[k.toString()] =
           v == null
@@ -79,15 +79,15 @@ class URLHanlder {
    * @returns 自身
    */
   public removeQuery(name: string | string[]) {
-    let querys: string[] = []
+    let queries: string[] = []
 
     if (typeof name === 'string') {
-      querys = [name]
+      queries = [name]
     } else if (name instanceof Array) {
-      querys = name
+      queries = name
     }
 
-    querys.forEach(v => {
+    queries.forEach(v => {
       delete this.query[v]
     })
 
@@ -99,17 +99,15 @@ class URLHanlder {
    * @param hash 哈希值（支持设置null清空）
    * @returns 自身
    */
-  setHash(hash: string | null): URLHanlder {
+  public setHash(hash: string | null): URLHandler {
     if (hash == null) {
-      hash = ''
+      hash = null
     } else if (hash.toString().indexOf('#') !== 0) {
       hash = '#' + hash
     }
 
     this.hash = hash
-    this.href = this.origin + this.pathname + this.search + this.hash
-
-    return this
+    return queryUpdate(this)
   }
 
   /**
@@ -121,7 +119,7 @@ class URLHanlder {
   }
 }
 
-function queryUpdate(self: URLHanlder) {
+function queryUpdate(self: URLHandler) {
   const queries = []
 
   for (const i in self.query) {
@@ -130,10 +128,10 @@ function queryUpdate(self: URLHanlder) {
 
   self.queries = queries
   self.queryString = queries.join('&')
-  self.search = queries.length === 0 ? '' : '?' + self.queryString
-  self.href = self.origin + self.pathname + self.search + self.hash
+  self.search = queries.length === 0 ? null : '?' + self.queryString
+  self.href = self.origin + self.pathname + (self.search || '') + (self.hash || '')
 
   return self
 }
 
-export default URLHanlder
+export default URLHandler
